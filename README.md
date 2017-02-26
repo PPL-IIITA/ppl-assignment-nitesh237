@@ -13,11 +13,13 @@ generate boys.txt execute testing_boys.cpp
   g++ testing_boys.cpp
   ./a.out
  ```
+ 
 generate girls.txt execute testing_girls.cpp
 >```
   g++ testing_girls.cpp
   ./a.out
  ```
+ 
 generate gift_store.txt execute testing_gifts.cpp
 >```
   g++ testing_gifts.cpp
