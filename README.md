@@ -23,6 +23,7 @@ generate gift_store.txt execute testing_gifts.cpp
   g++ testing_gifts.cpp
   ./a.out
  ```
+ 
 ###STEP 2-
 
 create library (lets say ppl_lib) execute-
