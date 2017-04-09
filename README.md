@@ -3,8 +3,11 @@ ppl-assignment-nitesh237 created by GitHub Classroom
 
 ### PHASE 2
 CREATED BY-
+
 Nitesh Gupta
+
 IIT2015050
+
 SECTION - 'A'
 
 ### STEP 1-
@@ -14,6 +17,8 @@ generate boys.txt execute testing_boys.cpp
 generate girls.txt execute testing_girls.cpp
 
 generate gift_store.txt execute testing_gifts.cpp
+
+generate q7_boys.txt execute q7_generate.cpp
 
 ### STEP 2-
 
