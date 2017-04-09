@@ -1,12 +1,13 @@
 # ppl-assignment-nitesh237
 ppl-assignment-nitesh237 created by GitHub Classroom
-###PHASE 2
+
+### PHASE 2
 CREATED BY-
 Nitesh Gupta
 IIT2015050
 SECTION - 'A'
 
-###STEP 1-
+### STEP 1-
 
 generate boys.txt execute testing_boys.cpp
 
@@ -14,7 +15,7 @@ generate girls.txt execute testing_girls.cpp
 
 generate gift_store.txt execute testing_gifts.cpp
 
-###STEP 2-
+### STEP 2-
 
 create library (lets say ppl_lib) execute-
 ```
@@ -29,7 +30,7 @@ create library (lets say ppl_lib) execute-
 > ar rvs ppl_lib *.o
 ```
 
-###STEP 3-
+### STEP 3-
 To run q3_1 execute the following command:
 ```
 > g++ q3_1.cpp ppl_lib
@@ -66,6 +67,16 @@ To run q7 execute the following command:
 > ./a.out
 ```
 
+### OUTPUTS -
+outputs of all the questions are stored in .txt files with the name -
+```
+q3_1 - output_q3_1.txt
+q3_2 - output_q3_2.txt
+q4 - output_q4.txt
+q5 - output_q5.txt
+q6 - output_q6.txt
+q7 - output_q7.txt
+```
 
 Documenation of the project can be found in -
 
