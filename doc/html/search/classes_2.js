@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['essential',['essential',['../classessential.html',1,'']]]
+  ['desparate',['desparate',['../classdesparate.html',1,'']]]
 ];

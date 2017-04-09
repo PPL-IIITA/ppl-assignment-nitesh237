@@ -2,10 +2,17 @@
  * CLASS LUXURY
  * containing detail about luxury gift
  */
-class luxury {
+#include "gift.h"
+class luxury: public gift {
 public:
-	int price; //!< Price of gift
-	int value; //!< Value of gift
-	int luxury; //!< Luxury Value of gift(out of 10)
+	int luuxury; //!< Luxury Value of gift(out of 10)
 	int difficulty; //!< Difficulty in obtaining gift(out of 10)
+	luxury(int pr, int val, int lux, int diff)
+	{			//! initialises the values
+		type = 2;
+		price = pr;
+		value = val;
+		luuxury = lux;
+		difficulty = diff;
+	}
 };

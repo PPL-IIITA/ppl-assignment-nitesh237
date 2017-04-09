@@ -2,9 +2,15 @@
  * CLASS UTILITY
  * containing detail about utility gift
  */
-class utility {
+#include "gift.h"
+class utility: public gift{
 public:
-	int value; //!< value of gift
-	int price; //!< price of gift
-	int utility; //!< utility value of gift(out of 10)
+	int utiility; //!< utility value of gift(out of 10)
+	utility(int pr, int val, int ut) 
+	{
+		type = 3;
+		price = pr;
+		value = val;
+		utiility = ut;
+	}
 };

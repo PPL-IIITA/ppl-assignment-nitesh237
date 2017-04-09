@@ -1,3 +1,7 @@
+/**
+ * CLASS OUT2
+ * prints all the gifts exchanged between couples along with k happiest and compatible couples
+ */
 #include<iostream>
 #include <stdlib.h>
 #include <ctime>
@@ -16,13 +20,8 @@ void out2::print(matching m)
 			cout <<time<<endl;
 			int t = m.c[i].basket[j].type;
 			cout<<"Type- "<<t<<" ";
-			if(t == 1) {
-				cout<<"Price- "<<m.c[i].basket[j].e.price<<" "<<"Value- "<<m.c[i].basket[j].e.value<<endl;
-			} else if(t == 2) {
-				cout<<"Price- "<<m.c[i].basket[j].l.price<<" "<<"Value- "<<m.c[i].basket[j].l.value<<endl;
-			} else {
-				cout<<"Price- "<<m.c[i].basket[j].u.price<<" "<<"Value- "<<m.c[i].basket[j].u.value<<endl;
-			}
+			cout<<"Price- "<<m.c[i].basket[j].price<<" "<<"Value- "<<m.c[i].basket[j].value<<endl;
+			
 		}
 		cout<<endl;
 	}		

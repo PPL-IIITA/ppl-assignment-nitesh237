@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['happ',['happ',['../classcouple.html#ac360c6c759cbcace7aba968ece31a39c',1,'couple']]]
+  ['intel',['intel',['../classboy.html#a71d1abd867065c974a0a5fc82816251e',1,'boy::intel()'],['../classgirl.html#a909600ba1a2bd73d658c59421e6634f8',1,'girl::intel()']]]
 ];

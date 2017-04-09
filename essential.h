@@ -1,9 +1,15 @@
 /**
  * CLASS ESSENTIAL
+ * inherits class GIFT
  * containing detail about essential gift
  */
-class essential {
+#include "gift.h"
+class essential: public gift {
 public:
-	int price; //!< Price of gift
-	int value; //!< Value of gift
+	essential(int pr, int val)
+	{						//! Initialises the values 
+		type = 1;
+		price = pr;
+		value = val;
+	}
 };

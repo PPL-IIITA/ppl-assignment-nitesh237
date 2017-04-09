@@ -2,6 +2,8 @@
  * CLASS BOY 
  * containing the attributes of all boys
  */
+#ifndef BOY.H_INCLUDED
+#define BOY.H_INCLUDED
 class boy {
 	public:
 		bool commited;  //!< Status of BOY
@@ -17,3 +19,4 @@ class boy {
 			commited = false;
 		}
 };
+#endif

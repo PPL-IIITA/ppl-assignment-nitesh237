@@ -2,8 +2,16 @@
  * CLASS COUPLE
  * containing detail about couple
  */
+#ifndef COUPLE.H_INCLUDED
+#define COUPLE.H_INCLUDED
 #include<stdio.h>
 #include "boy.h"
+#include "miser.h"
+#include "generous.h"
+#include "geek.h"
+#include "choosy.h"
+#include "normal.h"
+#include "desparate.h"
 #include "girl.h"
 #include "gift.h"
 class couple {
@@ -15,7 +23,7 @@ public:
 	int giftcost; //!< Stores total cost of gift exchanged during relationship
 	int giftvalue; //!< Stores total value of gift exchanged during relationship
 	int bk; //!< Stores the number of items in the basket
-	gift basket[100]; //!< The gift basket containing all the details of gifts
+	gift basket[1000]; //!< The gift basket containing all the details of gifts
 	/** @brief Initialises boy and girl in couple.
  	*
 	* @param b1 object containing details of boy
@@ -31,3 +39,4 @@ public:
 		bk = 0;
 	}
 };
+#endif

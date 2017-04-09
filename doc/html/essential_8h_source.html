@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>PPL-1: essential.h Source File</title>
+<title>PPL-2: essential.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">PPL-1
+   <div id="projectname">PPL-2
    </div>
    <div id="projectbrief">Valentine’s Day</div>
   </td>
@@ -63,9 +63,13 @@ $(function() {
 <div class="title">essential.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="essential_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div><div class="line"><a name="l00005"></a><span class="lineno"><a class="line" href="classessential.html">    5</a></span>&#160;<span class="keyword">class </span><a class="code" href="classessential.html">essential</a> {</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="classessential.html#a33a8296912b6495c5594dd3fa95cfdaf">    7</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classessential.html#a33a8296912b6495c5594dd3fa95cfdaf">price</a>; </div><div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="classessential.html#a01b944742e4b065fc04fae3d592ac957">    8</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classessential.html#a01b944742e4b065fc04fae3d592ac957">value</a>; </div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;};</div><div class="ttc" id="classessential_html_a33a8296912b6495c5594dd3fa95cfdaf"><div class="ttname"><a href="classessential.html#a33a8296912b6495c5594dd3fa95cfdaf">essential::price</a></div><div class="ttdeci">int price</div><div class="ttdoc">Price of gift. </div><div class="ttdef"><b>Definition:</b> essential.h:7</div></div>
-<div class="ttc" id="classessential_html_a01b944742e4b065fc04fae3d592ac957"><div class="ttname"><a href="classessential.html#a01b944742e4b065fc04fae3d592ac957">essential::value</a></div><div class="ttdeci">int value</div><div class="ttdoc">Value of gift. </div><div class="ttdef"><b>Definition:</b> essential.h:8</div></div>
-<div class="ttc" id="classessential_html"><div class="ttname"><a href="classessential.html">essential</a></div><div class="ttdef"><b>Definition:</b> essential.h:5</div></div>
+<a href="essential_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="gift_8h.html">gift.h</a>&quot;</span></div><div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="classessential.html">    7</a></span>&#160;<span class="keyword">class </span><a class="code" href="classessential.html">essential</a>: <span class="keyword">public</span> <a class="code" href="classgift.html">gift</a> {</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="classessential.html#aa3de59e9b54ca59b867675ae27954740">    9</a></span>&#160;    <a class="code" href="classessential.html#aa3de59e9b54ca59b867675ae27954740">essential</a>(<span class="keywordtype">int</span> pr, <span class="keywordtype">int</span> val)</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    {                       </div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        <a class="code" href="classgift.html#a566df9bb482f042621ea8ecf5bcaa2b7">type</a> = 1;</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <a class="code" href="classgift.html#a0b47f2fdc5eb88daa269cc827324c931">price</a> = pr;</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <a class="code" href="classgift.html#aa9e6fcf5bc68d7f151e7a853a25dcbeb">value</a> = val;</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    }</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;};</div><div class="ttc" id="classgift_html_aa9e6fcf5bc68d7f151e7a853a25dcbeb"><div class="ttname"><a href="classgift.html#aa9e6fcf5bc68d7f151e7a853a25dcbeb">gift::value</a></div><div class="ttdeci">int value</div><div class="ttdoc">Value of gift. </div><div class="ttdef"><b>Definition:</b> gift.h:11</div></div>
+<div class="ttc" id="classessential_html_aa3de59e9b54ca59b867675ae27954740"><div class="ttname"><a href="classessential.html#aa3de59e9b54ca59b867675ae27954740">essential::essential</a></div><div class="ttdeci">essential(int pr, int val)</div><div class="ttdef"><b>Definition:</b> essential.h:9</div></div>
+<div class="ttc" id="gift_8h_html"><div class="ttname"><a href="gift_8h.html">gift.h</a></div></div>
+<div class="ttc" id="classgift_html"><div class="ttname"><a href="classgift.html">gift</a></div><div class="ttdef"><b>Definition:</b> gift.h:7</div></div>
+<div class="ttc" id="classgift_html_a0b47f2fdc5eb88daa269cc827324c931"><div class="ttname"><a href="classgift.html#a0b47f2fdc5eb88daa269cc827324c931">gift::price</a></div><div class="ttdeci">int price</div><div class="ttdoc">Price of gift. </div><div class="ttdef"><b>Definition:</b> gift.h:10</div></div>
+<div class="ttc" id="classgift_html_a566df9bb482f042621ea8ecf5bcaa2b7"><div class="ttname"><a href="classgift.html#a566df9bb482f042621ea8ecf5bcaa2b7">gift::type</a></div><div class="ttdeci">int type</div><div class="ttdoc">The type of gift((1)Essential, (2)Luxury, (3)Utility) </div><div class="ttdef"><b>Definition:</b> gift.h:9</div></div>
+<div class="ttc" id="classessential_html"><div class="ttname"><a href="classessential.html">essential</a></div><div class="ttdef"><b>Definition:</b> essential.h:7</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

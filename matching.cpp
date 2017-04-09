@@ -2,119 +2,162 @@
  * CLASS MATCHING
  * contains details of al the boys, girls and couples
  */
-#include<iostream>
-#include<stdlib.h>
+#include <iostream>
+#include <stdlib.h>
+#include <string.h>
+#include "input.h"
 #include "matching.h"
+#include "essential.h"
+#include "luxury.h"
+#include "utility.h"
 using namespace std;
-matching::matching()
+void matching::match()
 {
 	ct = 0;
-	FILE *fp1, *fp2;
-	fp1 = fopen("boys.txt", "r");
-	fp2 = fopen("girls.txt", "r");
-	int n;
-	fscanf(fp1,"%d", &n);
-	//boy b[20];
-	//cout<<n<<endl;
-	for(int i = 0; i < n; i++) {
-		boy temp;
-		fscanf(fp1,"%s %d %d %d %d %d", temp.name, &temp.attract, &temp.intel, &temp.budget, &temp.attr_req, &temp.type);
-		b[i] = temp;
-	}
-	/*for(int i = 0; i < n; i++) {
-		cout<<b[i].name<<" "<<b[i].attract<<" "<<b[i].intel<<" "<<b[i].budget<<" "<<b[i].attr_req<<" "<<b[i].type<<" "<<b[i].commited<<endl;
-	}
-	cout<<endl;*/
-	int m;
-	fscanf(fp2,"%d", &m);
-	//girl g[10];
-	for(int i = 0; i < m; i++) {
-		girl temp;
-		fscanf(fp2,"%s %d %d %d %d %d", temp.name, &temp.attract, &temp.intel, &temp.maintainance, &temp.type, &temp.choice);
-		g[i] = temp;
-	}
-	/*for(int i = 0; i < m; i++) {
-		cout<<g[i].name<<" "<<g[i].attract<<" "<<g[i].intel<<" "<<g[i].maintainance<<" "<<g[i].req<<" "<<g[i].type<<" "<<g[i].choice<<" "<<g[i].commited<<endl;
-	}*/
-	//couple c[10];
-	for(int i = 0; i < m; i++) {
+	input in(boys, girls, &gt, &bt);
+	for(int i = 0; i < gt; i++) {
 		int id = -1;
-		boy max = b[0];
-		for(int j = 0; j < n; j++) {
-			if(b[j].budget < g[i].maintainance || g[i].attract < b[j].attr_req || b[i].commited == true) {
+		boy max = boys[0];
+		for(int j = 0; j < bt; j++) {
+			if(boys[j].budget < girls[i].maintainance || girls[i].attract < boys[j].attr_req || boys[j].commited == true) {
 				continue;
 			}
-			if(g[i].choice == 1) {
-				if(max.attract < b[j].attract) {
-					max = b[j];
+			if(girls[i].choice == 1) {
+				if(max.attract < boys[j].attract) {
+					max = boys[j];
 					id = j;
 				}
-			} else if(g[i].choice == 2) {
-				if(max.budget < b[j].budget) {
-					max = b[j];
+			} else if(girls[i].choice == 2) {
+				if(max.budget < boys[j].budget) {
+					max = boys[j];
 					id = j;
 				}
 			} else {
-				if(max.intel < b[j].intel) {
-					max = b[j];
+				if(max.intel < boys[j].intel) {
+					max = boys[j];
 					id = j;
 				}
 			}
 		}
-		if(id != -1 && b[id].commited == false) {
+		if(id != -1 && boys[id].commited == false) {
 			//printf("%s %s\n",max.name, g[i].name);
-			c[ct++].commit(max, g[i]);
+			c[ct++].commit(max, girls[i]);
 			//cout<<"$"<<id<<" "<<i<<endl;
-			b[id].commited = true;
-			g[i].commited = true;
+			boys[id].commited = true;
+			girls[i].commited = true;
 		}
+	}
+}
+void matching::match2()
+{
+	int gcnt = 0;
+	int bcnt = 0;
+	int cnt = 0;
+	ct = 0;
+	input in(boys, girls, &gt, &bt);
+	while(cnt != gt) {
+		if(cnt % 2 == 0) {
+			while(girls[gcnt].commited == true) {
+				gcnt++;
+			}
+			int id = -1;
+			boy max = boys[0];
+			for(int j = 0; j < bt; j++) {
+				if(boys[j].budget < girls[gcnt].maintainance || girls[gcnt].attract < boys[j].attr_req || boys[j].commited == true) {
+					continue;
+				}
+				if(girls[gcnt].choice == 1) {
+					if(max.attract < boys[j].attract) {
+						max = boys[j];
+						id = j;
+					}
+				} else if(girls[gcnt].choice == 2) {
+					if(max.budget < boys[j].budget) {
+						max = boys[j];
+						id = j;
+					}
+				} else {
+					if(max.intel < boys[j].intel) {
+						max = boys[j];
+						id = j;
+					}
+				}
+			}
+			if(id != -1 && boys[id].commited == false) {
+				//printf("%s %s\n",max.name, g[i].name);
+				c[ct++].commit(max, girls[gcnt]);
+				//cout<<"$"<<id<<" "<<i<<endl;
+				boys[id].commited = true;
+				girls[gcnt].commited = true;
+			}
+			gcnt++;
+		} else {
+			while(boys[bcnt].commited == true) {
+				bcnt++;
+			}
+			int id = -1;
+			girl max = girls[0];
+			for(int i = 0; i < gt; i++) {
+				if(boys[bcnt].budget < girls[i].maintainance || girls[i].commited == true) {
+					continue;
+				}
+				if(max.attract < girls[i].attract) {
+					max = girls[i];
+					id = i;
+				}
+			}
+			if(id != -1) {
+				c[ct++].commit(boys[bcnt], girls[id]);
+				boys[bcnt].commited = true;
+				girls[id].commited = true;
+			}
+			bcnt++;	
+		}
+		cnt++;
+	}
+	for(int i = 0; i < ct; i++) {
+		cout<<i<<" "<<c[i].b.name<<" "<<c[i].g.name<<endl;
 	}
 }
 void matching::gifting()
 {
+	int ttype;
+	int tprice;
+	int tvalue;
+	int tluxury;
+	int tdifficulty;
+	int tutility;
 	FILE *fp1;
 	fp1 = fopen("gift_store.txt","r");
 	int n;
 	gift store[30];
 	fscanf(fp1,"%d", &n);
 	for(int i = 0; i < n; i++) {
-		fscanf(fp1, "%d", &store[i].type);
-		if(store[i].type == 1) {
-			fscanf(fp1, "%d %d", &store[i].e.price, &store[i].e.value);
+		gift *temp;
+		fscanf(fp1, "%d %d %d", &ttype, &tprice, &tvalue);
+		if(ttype == 1) {
+			temp = new essential(tprice, tvalue);
 		} else if(store[i].type == 2) {
-			fscanf(fp1,"%d %d %d %d", &store[i].l.price, &store[i].l.value, &store[i].l.luxury, &store[i].l.difficulty);
+			fscanf(fp1,"%d %d",&tluxury, &tdifficulty);
+			temp = new luxury(tprice, tvalue, tluxury, tdifficulty);
 		} else {
-			fscanf(fp1,"%d %d %d", &store[i].u.price, &store[i].u.value, &store[i].u.utility);
+			fscanf(fp1,"%d", &tutility);
+			temp = new utility(tprice, tvalue, tutility);
 		}
+		store[i] = *temp;
 	}
 	for(int i = 0; i < ct; i++) {
 		c[i].bk = 0;
 		//int flag = 0;
 		c[i].basket[c[i].bk++] = store[0];
-		if(store[0].type == 1) {
-			c[i].giftcost += store[0].e.price;
-			c[i].giftvalue += store[0].e.value;
-		} else if(store[0].type == 2) {
-			c[i].giftcost += store[0].l.price;
-			c[i].giftvalue += store[0].l.value;
-		} else {
-			c[i].giftcost += store[0].u.price;
-			c[i].giftvalue += store[0].u.value;
-		}
+		c[i].giftcost += store[0].price;
+		c[i].giftvalue += store[0].value;
 		if(c[i].b.type == 1 || c[i].b.type == 3) {
 			for(int j = 1; j < n; j++) {
 				if(c[i].giftcost < c[i].g.maintainance) {
 					c[i].basket[c[i].bk++] = store[j];
-					if(store[j].type == 1) {
-						c[i].giftcost += store[j].e.price;
-						c[i].giftvalue += store[j].e.value;
-					} else if(store[j].type == 2) {
-						c[i].giftcost += store[j].l.price;
-						c[i].giftvalue += store[j].l.value;
-					} else {
-						c[i].giftcost += store[j].u.price;
-						c[i].giftvalue += store[j].u.value;
-					}
+					c[i].giftcost += store[j].price;
+					c[i].giftvalue += store[j].value;
 				} 
 			}
 			if(c[i].b.budget < c[i].giftcost) {
@@ -124,47 +167,21 @@ void matching::gifting()
 			for(int j = 1; j < n; j++) {
 				if(c[i].giftcost < c[i].g.maintainance) {
 					c[i].basket[c[i].bk++] = store[j];
-					if(store[j].type == 1) {
-						c[i].giftcost += store[j].e.price;
-						c[i].giftvalue += store[j].e.value;
-					} else if(store[j].type == 2) {
-						c[i].giftcost += store[j].l.price;
-						c[i].giftvalue += store[j].l.value;
-					} else {
-						c[i].giftcost += store[j].u.price;
-						c[i].giftvalue += store[j].u.value;
-					}
+					c[i].giftcost += store[j].price;
+					c[i].giftvalue += store[j].value;
 					continue;
 				}
 				if(c[i].giftcost > c[i].b.budget) {
 					c[i].b.budget = c[i].giftcost;
 					break;
 				} else {
-					if(store[j].type == 1) {
-						if(c[i].giftcost + store[j].e.price <= c[i].b.budget) {
-							c[i].basket[c[i].bk++] = store[j];
-							c[i].giftcost += store[j].e.price;
-							c[i].giftvalue += store[j].e.value;
-						} else {
-							break;
-						}
-					} else if(store[j].type == 2) {
-						if(c[i].giftcost + store[j].l.price <= c[i].b.budget) {
-							c[i].basket[c[i].bk++] = store[j];
-							c[i].giftcost += store[j].l.price;
-							c[i].giftvalue += store[j].l.value;
-						} else {
-							break;
-						}
+					if(c[i].giftcost + store[j].price <= c[i].b.budget) {
+						c[i].basket[c[i].bk++] = store[j];
+						c[i].giftcost += store[j].price;
+						c[i].giftvalue += store[j].value;
 					} else {
-						if(c[i].giftcost + store[j].u.price <= c[i].b.budget) {
-							c[i].basket[c[i].bk++] = store[j];
-							c[i].giftcost += store[j].u.price;
-							c[i].giftvalue += store[j].u.value;
-						} else {
-							break;
-						}
-					}
+						break;
+					} 
 				}
 			}
 		} 
@@ -201,10 +218,97 @@ void matching::sorting()
 			}
 		}
 	}
-	for(int i = 0; i < ct; i++) {
+	for(int i = 0; i < k; i++) {
 		cout<<i<<" "<<c[i].b.name<<" "<<c[i].g.name<<endl;
 		cout<<"HAPPINESS- "<<c[i].happ<<endl;
 		cout<<"COMPATIBILITY- "<<c[i].cmp<<endl;
 	
 	}
+}
+void matching::sorting2()
+{
+	srand(time(NULL));
+	couple temp;
+	for(int i = 0; i < ct-1; i++) {
+		for(int j = 0; j < ct-i-1; j++) {
+			if(c[j].happ < c[j+1].happ) {
+				temp = c[j+1];
+				c[j+1] = c[j];
+				c[j] = temp;
+			}
+		}
+	}
+	int k = ((rand()%(ct+1)) + 1);
+	cout<<"LEAST HAPPIEST "<<k<<" COUPLES-"<<endl<<endl;
+	int end = ct-k;
+	for(int i = ct-1; i >= end; i--) {
+		cout<<i<<" "<<c[i].b.name<<" "<<c[i].g.name<<endl;
+		cout<<"HAPPINESS- "<<c[i].happ<<endl;
+		cout<<"COMPATIBILITY- "<<c[i].cmp<<endl;
+		//ct--;
+		//int gid = -1;
+		breakup(c, i);
+	}
+	cout<<endl<<endl;
+
+	for(int i = ct-1; i >= 0; i--) {
+		cout<<i<<" "<<c[i].b.name<<" "<<c[i].g.name<<endl;
+	}
+
+}
+void matching::breakup(couple c[], int i)
+{
+	int bid = -1;
+		int id = -1;
+		boy max = boys[0];
+		girl gl = c[i].g;
+		for(int j = 0; j < bt; j++) {
+			if(!strcmp(c[i].b.name, boys[j].name)) {
+				bid = j;
+			}
+			if(boys[j].budget < gl.maintainance || gl.attract < boys[j].attr_req || boys[j].commited == true) {
+				continue;
+			}
+			if(gl.choice == 1) {
+				if(max.attract < boys[j].attract) {
+					max = boys[j];
+					id = j;
+				}
+			} else if(gl.choice == 2) {
+				if(max.budget < boys[j].budget) {
+					max = boys[j];
+					id = j;
+				}
+			} else {
+				if(max.intel < boys[j].intel) {
+					max = boys[j];
+					id = j;
+				}
+			}
+		}
+		if(id != -1 && boys[id].commited == false) {
+			//printf("%s %s\n",max.name, g[i].name);
+			cout<<c[i].b.name<<" Breaking Up with "<<c[i].g.name<<endl;
+			//cout<<boys[bid].name<<endl;
+			boys[bid].commited = false;
+			c[i].commit(max, c[i].g);
+			//cout<<"$"<<id<<" "<<i<<endl;
+			cout<<c[i].b.name<<" Commiting to "<<c[i].g.name<<endl;
+			//cout<<boys[id].name<<endl;
+			boys[id].commited = true;
+			//g[i].commited = true;
+		} else if(id == -1) {
+			cout<<c[i].b.name<<" Breaking Up with "<<c[i].g.name<<endl;
+			for(int j = i; j < ct-1; j++) {
+				c[j] = c[j+1];
+			}
+			--ct;
+			//cout<<ct<<endl;
+			for(int j =0; j < gt; j++) {
+				if(!strcmp(c[i].g.name ,girls[j].name))
+					girls[j].commited = false;
+			}
+			//cout<<boys[bid].name<<endl;
+			boys[bid].commited = false;
+		}
 }

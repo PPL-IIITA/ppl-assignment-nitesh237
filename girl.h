@@ -2,6 +2,8 @@
  * CLASS GIRL
  * contains the attributes of all GIRLs
  */
+#ifndef GIRL.H_INCLUDED
+#define GIRL.H_INCLUDED
 class girl {
 	public:
 		bool commited;			//!< Status of GIRL
@@ -16,3 +18,4 @@ class girl {
 			commited = false;
 		}
 };
+#endif
